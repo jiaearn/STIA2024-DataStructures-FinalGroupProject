@@ -208,7 +208,7 @@ public class EditData extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(this, "Some fields have not been filled.", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                 }else{
                     int dialogButton = JOptionPane.YES_NO_OPTION;
-                    int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to edit the data?", "Corona Virus Counting System", dialogButton);
+                    int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to edit the data?", "Electricity Billing System", dialogButton);
                     if (dialogResult == 0) {
                         for (Customer cus : Records.rowI) {
                             int row = cus.row;
@@ -241,7 +241,7 @@ public class EditData extends JFrame implements ActionListener {
                 }
 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Please enter an integer.", "Corona Virus Counting System", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter an integer.", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
             }
             ElectricityBillingSystem ebs = new ElectricityBillingSystem();
             ebs.fileWriter();

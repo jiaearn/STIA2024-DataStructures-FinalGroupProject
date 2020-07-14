@@ -296,10 +296,10 @@ public class Records extends JFrame implements ActionListener {
             if (ElectricityBillingSystem.customerList.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "List is empty", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
             } else {
-                String input = JOptionPane.showInputDialog(this, "Search for Acc No. :", "Electricity Billing System", JOptionPane.QUESTION_MESSAGE);
+                String input = JOptionPane.showInputDialog(this, "Search for Name / Acc No. :", "Electricity Billing System", JOptionPane.QUESTION_MESSAGE);
                 if (input != null) {
                     if (input.isEmpty()) {
-                        JOptionPane.showMessageDialog(this, "Search for Name / Acc No. :", "Electricity Billing System", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Please enter customer's Name / Acc No.", "Electricity Billing System", JOptionPane.WARNING_MESSAGE);
                     } else {
                         for (int i = 0; i < ElectricityBillingSystem.customerList.size(); i++) {
                             if (ElectricityBillingSystem.customerList.get(i).t4.equalsIgnoreCase(input)) {
@@ -401,7 +401,7 @@ public class Records extends JFrame implements ActionListener {
                                 } else
                                     return;
                             }
-                            JOptionPane.showMessageDialog(this, "Not Found", "Corona Virus Counting System", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Not Found", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }

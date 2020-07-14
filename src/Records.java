@@ -241,7 +241,7 @@ public class Records extends JFrame implements ActionListener {
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(null, "Not found!");
+                        JOptionPane.showMessageDialog(null, "Not found!", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (NumberFormatException numberFormatException) {
                     JOptionPane.showMessageDialog(this, "Please enter an integer.", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
@@ -258,7 +258,7 @@ public class Records extends JFrame implements ActionListener {
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Not found!");
+                    JOptionPane.showMessageDialog(null, "Not found!", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }

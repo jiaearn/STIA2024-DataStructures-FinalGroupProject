@@ -13,9 +13,9 @@ import java.util.ArrayList;
 public class Records extends JFrame implements ActionListener {
 
     static ArrayList<Customer> customerList = new ArrayList<>();
+    static ArrayList<Customer> rowI = new ArrayList<>();
 
     String[] header = new String[]{"Date Bill", "Account No", "Invoice No", "Name", "Address", "Meter No", "Previos Meter", "Current Meter", "Total Usage", "Tunggakan", "Current Charges", "Total CurrentCharge"};
-
     JTable output;
     DefaultTableModel dtm;
     JScrollPane jsp;
@@ -25,7 +25,7 @@ public class Records extends JFrame implements ActionListener {
     JPanel panel1,panel2;
 
     public Records() {
-        ImageIcon icon = new ImageIcon("images/Logo.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("Logo.png"));
         setIconImage(icon.getImage());
         outputTable();
         outputPanel1();
@@ -64,7 +64,8 @@ public class Records extends JFrame implements ActionListener {
         add(panel1);
 
         label1 = new JLabel("Account No:");
-        label1.setBounds(10,15,70,30);
+        label1.setFont(new Font("Dialog", Font.BOLD, 12));
+        label1.setBounds(10, 15, 70, 30);
         panel1.add(label1);
 
         text1 = new JTextField(20);
@@ -72,7 +73,8 @@ public class Records extends JFrame implements ActionListener {
         panel1.add(text1);
 
         label2 = new JLabel("Name:");
-        label2.setBounds(390,15,50,30);
+        label2.setFont(new Font("Dialog", Font.BOLD, 12));
+        label2.setBounds(390, 15, 50, 30);
         panel1.add(label2);
 
         text2 = new JTextField();
@@ -197,27 +199,6 @@ public class Records extends JFrame implements ActionListener {
         return -1;
     }
 
-//    public int binarySearch(Long aacNo, ArrayList<Customer> customerList){
-//
-//        int i=0;
-//        int j=customerList.size()-1;
-//
-//        while (i<=j){
-//
-//            int mid=(i+j)/2;
-//            if (customerList.get(mid).getT2()<aacNo){
-//                i = mid+1;
-//            }
-//            else if (customerList.get(mid).getT2()>aacNo){
-//                j=mid-1;
-//            }
-//            else {
-//                return mid;
-//            }
-//        }
-//        return -1;
-//    }
-
     public int binarySearch2(String name, ArrayList<Customer> customerList){
 
         int i=0;
@@ -268,7 +249,6 @@ public class Records extends JFrame implements ActionListener {
             }
 
             else if(text1.getText().equals("")) {
-
                 String t2 = text2.getText().toUpperCase();
                 int index2 = binarySearch2(t2, ElectricityBillingSystem.customerList);
                 if (index2 >= 0) {
@@ -281,8 +261,6 @@ public class Records extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Not found!");
                 }
             }
-
-
         }
 
         if (e.getSource() == reset) {
@@ -312,28 +290,46 @@ public class Records extends JFrame implements ActionListener {
             setVisible(false);
         }
 
-
-        int row = output.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) output.getModel();
 
         if (e.getSource() == delete) {
             if (ElectricityBillingSystem.customerList.isEmpty()) {
-                if (e.getSource() == delete) {
-                    JOptionPane.showMessageDialog(this, "List is empty", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
-                }
+                JOptionPane.showMessageDialog(this, "List is empty", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
             } else {
-                if (e.getSource() == delete) {
-                    if (output.getSelectionModel().isSelectionEmpty()) {
-                        JOptionPane.showMessageDialog(this, "Please select a row that you want to delete", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
+                String input = JOptionPane.showInputDialog(this, "Search for Acc No. :", "Electricity Billing System", JOptionPane.QUESTION_MESSAGE);
+                if (input != null) {
+                    if (input.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Search for Name / Acc No. :", "Electricity Billing System", JOptionPane.WARNING_MESSAGE);
                     } else {
-                        int dialogButton = JOptionPane.YES_NO_OPTION;
-                        int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the data?", "Electricity Billing System", dialogButton);
-                        if (dialogResult == 0) {
-                            ElectricityBillingSystem.customerList.remove(row);
-                            model.removeRow(row);
-                            ElectricityBillingSystem ebs = new ElectricityBillingSystem();
-                            ebs.fileWriter();
+                        for (int i = 0; i < ElectricityBillingSystem.customerList.size(); i++) {
+                            if (ElectricityBillingSystem.customerList.get(i).t4.equalsIgnoreCase(input)) {
+                                int dialogButton = JOptionPane.YES_NO_OPTION;
+                                int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the data of  " + input.toUpperCase() + "?", "Electricity Billing System", dialogButton);
+                                if (dialogResult == 0) {
+                                    ElectricityBillingSystem.customerList.remove(i);
+                                    model.removeRow(i);
+                                    ElectricityBillingSystem ebs = new ElectricityBillingSystem();
+                                    ebs.fileWriter();
+                                }
+                                return;
+                            }
                         }
+                        for (int i = 0; i < ElectricityBillingSystem.customerList.size(); i++) {
+                            if (input.matches("[0-9]+")) {
+                                if (ElectricityBillingSystem.customerList.get(i).t2 == Long.parseLong(input)) {
+                                    int dialogButton = JOptionPane.YES_NO_OPTION;
+                                    int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the data of  " + input + "?", "Electricity Billing System", dialogButton);
+                                    if (dialogResult == 0) {
+                                        ElectricityBillingSystem.customerList.remove(i);
+                                        model.removeRow(i);
+                                        ElectricityBillingSystem ebs = new ElectricityBillingSystem();
+                                        ebs.fileWriter();
+                                    }
+                                    return;
+                                }
+                            }
+                        }
+                        JOptionPane.showMessageDialog(this, "Not Found", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -353,9 +349,9 @@ public class Records extends JFrame implements ActionListener {
                         }
                         else {
                             for (int i = 0; i < ElectricityBillingSystem.customerList.size(); i++) {
-
                                 if (ElectricityBillingSystem.customerList.get(i).t4.equalsIgnoreCase(input)) {
-                                    JOptionPane.showMessageDialog(this," Found","Electricity Billing System",JOptionPane.INFORMATION_MESSAGE);
+                                    rowI.add(new Customer(i));
+                                    JOptionPane.showMessageDialog(this, " Found", "Electricity Billing System", JOptionPane.INFORMATION_MESSAGE);
                                     String t1 = ElectricityBillingSystem.customerList.get(i).t1;
                                     t1 = t1.toUpperCase();
                                     long t2 = ElectricityBillingSystem.customerList.get(i).t2;
@@ -376,30 +372,36 @@ public class Records extends JFrame implements ActionListener {
                                     this.dispose();
                                     return;
                                 }
-                                else if (ElectricityBillingSystem.customerList.get(i).t2==(Long.parseLong(input))) {
-                                    JOptionPane.showMessageDialog(this,"Found","Electricity Billing System",JOptionPane.INFORMATION_MESSAGE);
-                                    String t1 = ElectricityBillingSystem.customerList.get(i).t1;
-                                    t1 = t1.toUpperCase();
-                                    long t2 = ElectricityBillingSystem.customerList.get(i).t2;
-                                    long t3 = ElectricityBillingSystem.customerList.get(i).t3;
-                                    String t4 = ElectricityBillingSystem.customerList.get(i).t4;
-                                    t4 = t4.toUpperCase();
-                                    String t5 = ElectricityBillingSystem.customerList.get(i).t5;
-                                    t5 = t5.toUpperCase();
-                                    long t6 = ElectricityBillingSystem.customerList.get(i).t6;
-                                    int t7 = ElectricityBillingSystem.customerList.get(i).t7;
-                                    int t8 = ElectricityBillingSystem.customerList.get(i).t8;
-                                    double t9 = ElectricityBillingSystem.customerList.get(i).t9;
-                                    double cC = ElectricityBillingSystem.customerList.get(i).cC;
-                                    double tCC = ElectricityBillingSystem.customerList.get(i).tCC;
-                                    int tU = ElectricityBillingSystem.customerList.get(i).tU;
-                                    customerList.add(new Customer(t1, t2, t3, t4, t5, t6, t7, t8, tU, t9, cC, tCC));
-                                    new EditData();
-                                    this.dispose();
-                                    return;
-                                }
                             }
-                            JOptionPane.showMessageDialog(this,"Not Found","Corona Virus Counting System",JOptionPane.ERROR_MESSAGE);
+                            for (int i = 0; i < ElectricityBillingSystem.customerList.size(); i++) {
+                                if (input.matches("[0-9]+")) {
+                                    if (ElectricityBillingSystem.customerList.get(i).t2 == Long.parseLong(input)) {
+                                        rowI.add(new Customer(i));
+                                        JOptionPane.showMessageDialog(this, "Found", "Electricity Billing System", JOptionPane.INFORMATION_MESSAGE);
+                                        String t1 = ElectricityBillingSystem.customerList.get(i).t1;
+                                        t1 = t1.toUpperCase();
+                                        long t2 = ElectricityBillingSystem.customerList.get(i).t2;
+                                        long t3 = ElectricityBillingSystem.customerList.get(i).t3;
+                                        String t4 = ElectricityBillingSystem.customerList.get(i).t4;
+                                        t4 = t4.toUpperCase();
+                                        String t5 = ElectricityBillingSystem.customerList.get(i).t5;
+                                        t5 = t5.toUpperCase();
+                                        long t6 = ElectricityBillingSystem.customerList.get(i).t6;
+                                        int t7 = ElectricityBillingSystem.customerList.get(i).t7;
+                                        int t8 = ElectricityBillingSystem.customerList.get(i).t8;
+                                        double t9 = ElectricityBillingSystem.customerList.get(i).t9;
+                                        double cC = ElectricityBillingSystem.customerList.get(i).cC;
+                                        double tCC = ElectricityBillingSystem.customerList.get(i).tCC;
+                                        int tU = ElectricityBillingSystem.customerList.get(i).tU;
+                                        customerList.add(new Customer(t1, t2, t3, t4, t5, t6, t7, t8, tU, t9, cC, tCC));
+                                        new EditData();
+                                        this.dispose();
+                                        return;
+                                    }
+                                } else
+                                    return;
+                            }
+                            JOptionPane.showMessageDialog(this, "Not Found", "Corona Virus Counting System", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }

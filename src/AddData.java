@@ -23,7 +23,7 @@ public class AddData extends JFrame implements ActionListener {
     static ArrayList<Customer> customerList = new ArrayList<>();
 
     public AddData() {
-        ImageIcon icon = new ImageIcon("images/Logo.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("Logo.png"));
         setIconImage(icon.getImage());
 
         table();
@@ -262,6 +262,4 @@ public class AddData extends JFrame implements ActionListener {
         text8.setText(null);
         text9.setText(null);
     }
-
-
 }

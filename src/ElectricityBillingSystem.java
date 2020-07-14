@@ -8,7 +8,6 @@ public class ElectricityBillingSystem {
     double t9, cC, tCC;
     int tU, t7, t8;
     long t2, t3, t6;
-
     static ArrayList<Customer> customerList = new ArrayList<>();
 
     public ElectricityBillingSystem() {
@@ -53,29 +52,6 @@ public class ElectricityBillingSystem {
         return data;
     }
 
-    public String toString2() {
-        String data;
-        CalculateData c = new CalculateData(t1, t2, t3, t4, t5, t6, t7, t8, tU, t9, cC, tCC);
-        c.calculateBill();
-        tU = c.getTotalUsage();
-        cC = c.getCurrentCharge();
-        tCC = c.getTotalcurrentCharge();
-
-        data = "\nDate Bill: " + t1
-                + "\n" + "Account No:" + t2
-                + "\n" + "Invoice No:" + t3
-                + "\n" + "Name: " + t4
-                + "\n" + "Address:" + t5
-                + "\n" + "Meter No:" + t6
-                + "\n" + "Previous Meter:" + t7
-                + "\n" + "Current Meter:" + t8
-                + "\n" + "Total Usage:" + c.getTotalUsage()
-                + "\n" + "Tunggakan:" + String.format("%.2f", t9)
-                + "\n" + "Current Charge" + String.format("%.2f", cC)
-                + "\n" + "Total CurrentCharge : RM" + String.format("%.2f", tCC);
-        return data;
-    }
-
     public void fileWriter() {
         try (FileWriter ebs = new FileWriter("Electricity Billing System.txt")) {
             StringBuilder sb = new StringBuilder();
@@ -102,22 +78,6 @@ public class ElectricityBillingSystem {
             ebs.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void insertionSort(ArrayList<Customer> customerList) {
-
-        for (int x = 1; x < customerList.size(); x++) {
-
-            Customer temp = customerList.get(x);
-            int y = x - 1;
-
-            while (y >= 0 && customerList.get(y).getT2() > temp.getT2()) {
-
-                customerList.set(x, customerList.get(y));
-                customerList.set(y, temp);
-                y--;
-            }
         }
     }
 

@@ -1,5 +1,4 @@
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,10 +17,8 @@ public class MainMenu extends JFrame implements ActionListener {
     JLabel picture;
 
     public MainMenu() {
-
-        ImageIcon icon = new ImageIcon("images/Logo.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("Logo.png"));
         setIconImage(icon.getImage());
-
         setLayout(null);
         setTitle("Main Menu");
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -119,7 +116,6 @@ public class MainMenu extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

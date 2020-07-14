@@ -1,5 +1,4 @@
 
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -9,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 
 public class EditData extends JFrame implements ActionListener {
 
@@ -21,10 +19,8 @@ public class EditData extends JFrame implements ActionListener {
     JScrollPane jsp1;
     JPanel input, button;
 
-    static ArrayList<Customer> customerList = new ArrayList<>();
-
     public EditData() {
-        ImageIcon icon = new ImageIcon("images/Logo.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("Logo.png"));
         setIconImage(icon.getImage());
 
         table();
@@ -74,12 +70,8 @@ public class EditData extends JFrame implements ActionListener {
 
         text1 = new JTextField(10);
         text2 = new JTextField(10);
-        text2.setEnabled(false);
-        text2.setBackground(Color.lightGray);
         text3 = new JTextField(10);
         text4 = new JTextField(50);
-        text4.setEnabled(false);
-        text4.setBackground(Color.lightGray);
         text5 = new JTextField(60);
         text6 = new JTextField(10);
         text7 = new JTextField(10);
@@ -169,9 +161,6 @@ public class EditData extends JFrame implements ActionListener {
         setLocation(400, 50);
         setSize(750, 700);
 
-        for (Customer customer:customerList) {
-            System.out.println(customer);
-        }
     }
 
     public void table() {
@@ -221,50 +210,33 @@ public class EditData extends JFrame implements ActionListener {
                     int dialogButton = JOptionPane.YES_NO_OPTION;
                     int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to edit the data?", "Corona Virus Counting System", dialogButton);
                     if (dialogResult == 0) {
-                        String t1 = text1.getText();
-                        t1 = t1.toUpperCase();
-                        long t2 = Long.parseLong(text2.getText());
-                        long t3 = Long.parseLong(text3.getText());
-                        String t4 = text4.getText();
-                        t4 = t4.toUpperCase();
-                        String t5 = text5.getText();
-                        t5 = t5.toUpperCase();
-                        long t6 = Long.parseLong(text6.getText());
-                        int t7 = Integer.parseInt(text7.getText());
-                        int t8 = Integer.parseInt(text8.getText());
-                        double t9 = Double.parseDouble(text9.getText());
-                        double cC = 0, tCC = 0;
-                        int tU = 0;
+                        for (Customer cus : Records.rowI) {
+                            int row = cus.row;
+                            String t1 = text1.getText();
+                            t1 = t1.toUpperCase();
+                            long t2 = Long.parseLong(text2.getText());
+                            long t3 = Long.parseLong(text3.getText());
+                            String t4 = text4.getText();
+                            t4 = t4.toUpperCase();
+                            String t5 = text5.getText();
+                            t5 = t5.toUpperCase();
+                            long t6 = Long.parseLong(text6.getText());
+                            int t7 = Integer.parseInt(text7.getText());
+                            int t8 = Integer.parseInt(text8.getText());
+                            double t9 = Double.parseDouble(text9.getText());
+                            double cC = 0, tCC = 0;
+                            int tU = 0;
 
-//                        for (Iterator<Customer> iter = ElectricityBillingSystem.customerList.iterator(); iter.hasNext(); ) {
-//                            Customer name = iter.next();
-//                            if(name.getT4().equals(t4)){
-//                                iter.remove();
-//                                ElectricityBillingSystem ebs = new ElectricityBillingSystem();
-//                                ebs.fileWriter();
-//                            }
-//                        }
-
-
-//                        for (int i = 0; i < ElectricityBillingSystem.customerList.size(); i++) {
-//                            if (ElectricityBillingSystem.customerList.get(i).t4.equalsIgnoreCase(t4)) {
-//                                ElectricityBillingSystem.customerList.remove(i);
-//                            }
-//                        }
-//                        for (int i = 0; i < ElectricityBillingSystem.customerList.size(); i++) {
-//                            if (ElectricityBillingSystem.customerList.get(i).t2==(t2)) {
-//                                ElectricityBillingSystem.customerList.remove(i);
-//                            }
-//                        }
-
-                        if (t7 > 0) {
-                            if (t8 > t7) {
-                                ElectricityBillingSystem electricityBillingSystem = new ElectricityBillingSystem(t1, t2, t3, t4, t5, t6, t7, t8, tU, t9, cC, tCC);
-                                JOptionPane.showMessageDialog(this, "Data has been edit.\n" + electricityBillingSystem.toString(), "Electricity Billing System", JOptionPane.INFORMATION_MESSAGE);
+                            if (t7 > 0) {
+                                if (t8 > t7) {
+                                    ElectricityBillingSystem electricityBillingSystem = new ElectricityBillingSystem(t1, t2, t3, t4, t5, t6, t7, t8, tU, t9, cC, tCC);
+                                    ElectricityBillingSystem.customerList.remove(row);
+                                    JOptionPane.showMessageDialog(this, "Data has been edit.\n" + electricityBillingSystem.toString(), "Electricity Billing System", JOptionPane.INFORMATION_MESSAGE);
+                                } else
+                                    JOptionPane.showMessageDialog(this, "Current Meter must bigger than Previous Meter.", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                             } else
-                                JOptionPane.showMessageDialog(this, "Current Meter must bigger than Previous Meter.", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
-                        } else
-                            JOptionPane.showMessageDialog(this, "Please enter positive number", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(this, "Please enter positive number", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
                 }
 
@@ -295,6 +267,5 @@ public class EditData extends JFrame implements ActionListener {
         text8.setText(null);
         text9.setText(null);
     }
-
 
 }

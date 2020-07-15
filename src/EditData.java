@@ -241,7 +241,8 @@ public class EditData extends JFrame implements ActionListener {
                                     JOptionPane.showMessageDialog(this, "Current Meter must bigger than Previous Meter.", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                             } else
                                 JOptionPane.showMessageDialog(this, "Please enter positive number", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
-                        }
+                        } else
+                            JOptionPane.showMessageDialog(this, "Please enter 6 digit account number", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                     }
 
                 }

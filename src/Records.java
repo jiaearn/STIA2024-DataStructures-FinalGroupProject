@@ -253,7 +253,7 @@ public class Records extends JFrame implements ActionListener {
                 int index2 = binarySearch2(t2, ElectricityBillingSystem.customerList);
                 if (index2 >= 0) {
                     dtm.setRowCount(0);
-                    Object[] objs = {ElectricityBillingSystem.customerList.get(index2).t1, ElectricityBillingSystem.customerList.get(index2).t2, ElectricityBillingSystem.customerList.get(index2).t3, ElectricityBillingSystem.customerList.get(index2).t4, ElectricityBillingSystem.customerList.get(index2).t5, ElectricityBillingSystem.customerList.get(index2).t6, ElectricityBillingSystem.customerList.get(index2).t7, ElectricityBillingSystem.customerList.get(index2).t8, ElectricityBillingSystem.customerList.get(index2).t9, ElectricityBillingSystem.customerList.get(index2).cC, ElectricityBillingSystem.customerList.get(index2).tCC};
+                    Object[] objs = {ElectricityBillingSystem.customerList.get(index2).t1, ElectricityBillingSystem.customerList.get(index2).t2, ElectricityBillingSystem.customerList.get(index2).t3, ElectricityBillingSystem.customerList.get(index2).t4, ElectricityBillingSystem.customerList.get(index2).t5, ElectricityBillingSystem.customerList.get(index2).t6, ElectricityBillingSystem.customerList.get(index2).t7, ElectricityBillingSystem.customerList.get(index2).t8, ElectricityBillingSystem.customerList.get(index2).tU, ElectricityBillingSystem.customerList.get(index2).t9, ElectricityBillingSystem.customerList.get(index2).cC, ElectricityBillingSystem.customerList.get(index2).tCC};
                     dtm.addRow(objs);
                 }
                 else

@@ -211,21 +211,22 @@ public class EditData extends JFrame implements ActionListener {
                     int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to edit the data?", "Electricity Billing System", dialogButton);
                     if (dialogResult == 0) {
 
-                            String t1 = text1.getText();
-                            t1 = t1.toUpperCase();
-                            long t2 = Long.parseLong(text2.getText());
-                            long t3 = Long.parseLong(text3.getText());
-                            String t4 = text4.getText();
-                            t4 = t4.toUpperCase();
-                            String t5 = text5.getText();
-                            t5 = t5.toUpperCase();
-                            long t6 = Long.parseLong(text6.getText());
-                            int t7 = Integer.parseInt(text7.getText());
-                            int t8 = Integer.parseInt(text8.getText());
-                            double t9 = Double.parseDouble(text9.getText());
-                            double cC = 0, tCC = 0;
-                            int tU = 0;
+                        String t1 = text1.getText();
+                        t1 = t1.toUpperCase();
+                        long t2 = Long.parseLong(text2.getText());
+                        long t3 = Long.parseLong(text3.getText());
+                        String t4 = text4.getText();
+                        t4 = t4.toUpperCase();
+                        String t5 = text5.getText();
+                        t5 = t5.toUpperCase();
+                        long t6 = Long.parseLong(text6.getText());
+                        int t7 = Integer.parseInt(text7.getText());
+                        int t8 = Integer.parseInt(text8.getText());
+                        double t9 = Double.parseDouble(text9.getText());
+                        double cC = 0, tCC = 0;
+                        int tU = 0;
 
+                        if (text2.getText().length() == 6) {
                             if (t7 > 0) {
                                 if (t8 > t7) {
                                     ElectricityBillingSystem electricityBillingSystem = new ElectricityBillingSystem(t1, t2, t3, t4, t5, t6, t7, t8, tU, t9, cC, tCC);
@@ -241,6 +242,7 @@ public class EditData extends JFrame implements ActionListener {
                             } else
                                 JOptionPane.showMessageDialog(this, "Please enter positive number", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                         }
+                    }
 
                 }
 

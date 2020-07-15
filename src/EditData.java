@@ -229,11 +229,13 @@ public class EditData extends JFrame implements ActionListener {
                             if (t7 > 0) {
                                 if (t8 > t7) {
                                     ElectricityBillingSystem electricityBillingSystem = new ElectricityBillingSystem(t1, t2, t3, t4, t5, t6, t7, t8, tU, t9, cC, tCC);
+                                    JOptionPane.showMessageDialog(this, "Data has been edit.\n" + electricityBillingSystem.toString(), "Electricity Billing System", JOptionPane.INFORMATION_MESSAGE);
                                     for (Customer cus : Records.rowI) {
                                         int row = cus.row;
                                         ElectricityBillingSystem.customerList.remove(row);
                                     }
-                                    JOptionPane.showMessageDialog(this, "Data has been edit.\n" + electricityBillingSystem.toString(), "Electricity Billing System", JOptionPane.INFORMATION_MESSAGE);
+                                    new Records();
+                                    this.dispose();
                                 } else
                                     JOptionPane.showMessageDialog(this, "Current Meter must bigger than Previous Meter.", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                             } else

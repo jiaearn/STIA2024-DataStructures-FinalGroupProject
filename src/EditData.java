@@ -210,8 +210,7 @@ public class EditData extends JFrame implements ActionListener {
                     int dialogButton = JOptionPane.YES_NO_OPTION;
                     int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to edit the data?", "Electricity Billing System", dialogButton);
                     if (dialogResult == 0) {
-                        for (Customer cus : Records.rowI) {
-                            int row = cus.row;
+
                             String t1 = text1.getText();
                             t1 = t1.toUpperCase();
                             long t2 = Long.parseLong(text2.getText());
@@ -230,14 +229,17 @@ public class EditData extends JFrame implements ActionListener {
                             if (t7 > 0) {
                                 if (t8 > t7) {
                                     ElectricityBillingSystem electricityBillingSystem = new ElectricityBillingSystem(t1, t2, t3, t4, t5, t6, t7, t8, tU, t9, cC, tCC);
-                                    ElectricityBillingSystem.customerList.remove(row);
+                                    for (Customer cus : Records.rowI) {
+                                        int row = cus.row;
+                                        ElectricityBillingSystem.customerList.remove(row);
+                                    }
                                     JOptionPane.showMessageDialog(this, "Data has been edit.\n" + electricityBillingSystem.toString(), "Electricity Billing System", JOptionPane.INFORMATION_MESSAGE);
                                 } else
                                     JOptionPane.showMessageDialog(this, "Current Meter must bigger than Previous Meter.", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                             } else
                                 JOptionPane.showMessageDialog(this, "Please enter positive number", "Electricity Billing System", JOptionPane.ERROR_MESSAGE);
                         }
-                    }
+
                 }
 
             } catch (Exception ex) {

@@ -348,6 +348,7 @@ public class Records extends JFrame implements ActionListener {
                             JOptionPane.showMessageDialog(this, "Please enter customer's Name / Acc No.", "Electricity Billing System", JOptionPane.WARNING_MESSAGE);
                         }
                         else {
+                            Records.rowI.clear();
                             for (int i = 0; i < ElectricityBillingSystem.customerList.size(); i++) {
                                 if (ElectricityBillingSystem.customerList.get(i).t4.equalsIgnoreCase(input)) {
                                     rowI.add(new Customer(i));

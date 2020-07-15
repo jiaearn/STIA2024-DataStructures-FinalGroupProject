@@ -236,7 +236,7 @@ public class Records extends JFrame implements ActionListener {
                     int index = binarySearch(t1, ElectricityBillingSystem.customerList);
                     if (index >= 0) {
                         dtm.setRowCount(0);
-                        Object[] objs = {ElectricityBillingSystem.customerList.get(index).t1, ElectricityBillingSystem.customerList.get(index).t2, ElectricityBillingSystem.customerList.get(index).t3, ElectricityBillingSystem.customerList.get(index).t4, ElectricityBillingSystem.customerList.get(index).t5, ElectricityBillingSystem.customerList.get(index).t6, ElectricityBillingSystem.customerList.get(index).t7, ElectricityBillingSystem.customerList.get(index).t8, ElectricityBillingSystem.customerList.get(index).t9, ElectricityBillingSystem.customerList.get(index).cC, ElectricityBillingSystem.customerList.get(index).tCC};
+                        Object[] objs = {ElectricityBillingSystem.customerList.get(index).t1, ElectricityBillingSystem.customerList.get(index).t2, ElectricityBillingSystem.customerList.get(index).t3, ElectricityBillingSystem.customerList.get(index).t4, ElectricityBillingSystem.customerList.get(index).t5, ElectricityBillingSystem.customerList.get(index).t6, ElectricityBillingSystem.customerList.get(index).t7, ElectricityBillingSystem.customerList.get(index).t8, ElectricityBillingSystem.customerList.get(index).tU, ElectricityBillingSystem.customerList.get(index).t9, ElectricityBillingSystem.customerList.get(index).cC, ElectricityBillingSystem.customerList.get(index).tCC};
                         dtm.addRow(objs);
                     }
                     else

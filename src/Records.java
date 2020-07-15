@@ -306,8 +306,16 @@ public class Records extends JFrame implements ActionListener {
                                 int dialogButton = JOptionPane.YES_NO_OPTION;
                                 int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the data of  " + input.toUpperCase() + "?", "Electricity Billing System", dialogButton);
                                 if (dialogResult == 0) {
-                                    ElectricityBillingSystem.customerList.remove(i);
+                                    dtm.setRowCount(0);
+                                    for (Customer cus : ElectricityBillingSystem.customerList) {
+                                        String t9 = String.format("%.2f", cus.t9);
+                                        String cC = String.format("%.2f", cus.cC);
+                                        String tCC = String.format("%.2f", cus.tCC);
+                                        Object[] objs = {cus.t1, cus.t2, cus.t3, cus.t4, cus.t5, cus.t6, cus.t7, cus.t8, cus.tU, t9, cC, tCC};
+                                        dtm.addRow(objs);
+                                    }
                                     model.removeRow(i);
+                                    ElectricityBillingSystem.customerList.remove(i);
                                     ElectricityBillingSystem ebs = new ElectricityBillingSystem();
                                     ebs.fileWriter();
                                 }
@@ -320,8 +328,16 @@ public class Records extends JFrame implements ActionListener {
                                     int dialogButton = JOptionPane.YES_NO_OPTION;
                                     int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the data of  " + input + "?", "Electricity Billing System", dialogButton);
                                     if (dialogResult == 0) {
-                                        ElectricityBillingSystem.customerList.remove(i);
+                                        dtm.setRowCount(0);
+                                        for (Customer cus : ElectricityBillingSystem.customerList) {
+                                            String t9 = String.format("%.2f", cus.t9);
+                                            String cC = String.format("%.2f", cus.cC);
+                                            String tCC = String.format("%.2f", cus.tCC);
+                                            Object[] objs = {cus.t1, cus.t2, cus.t3, cus.t4, cus.t5, cus.t6, cus.t7, cus.t8, cus.tU, t9, cC, tCC};
+                                            dtm.addRow(objs);
+                                        }
                                         model.removeRow(i);
+                                        ElectricityBillingSystem.customerList.remove(i);
                                         ElectricityBillingSystem ebs = new ElectricityBillingSystem();
                                         ebs.fileWriter();
                                     }

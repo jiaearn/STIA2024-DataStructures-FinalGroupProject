@@ -64,22 +64,22 @@ public class Records extends JFrame implements ActionListener {
         panel1.setBorder(BorderFactory.createEtchedBorder());
         add(panel1);
 
-        label1 = new JLabel("Account No:");
+        label1 = new JLabel("Account No :");
         label1.setFont(new Font("Dialog", Font.BOLD, 12));
-        label1.setBounds(10, 15, 70, 30);
+        label1.setBounds(20, 15, 100, 30);
         panel1.add(label1);
 
         text1 = new JTextField(20);
-        text1.setBounds(90,15,150,30);
+        text1.setBounds(110, 15, 175, 30);
         panel1.add(text1);
 
-        label2 = new JLabel("Name:");
+        label2 = new JLabel("Name :");
         label2.setFont(new Font("Dialog", Font.BOLD, 12));
-        label2.setBounds(390, 15, 50, 30);
+        label2.setBounds(410, 15, 100, 30);
         panel1.add(label2);
 
         text2 = new JTextField();
-        text2.setBounds(450,15,230,30);
+        text2.setBounds(500, 15, 175, 30);
         panel1.add(text2);
     }
 

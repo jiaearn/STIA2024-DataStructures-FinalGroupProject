@@ -9,13 +9,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Records extends JFrame implements ActionListener {
 
     static ArrayList<Customer> customerList = new ArrayList<>();
     static ArrayList<Customer> rowI = new ArrayList<>();
 
-    String[] header = new String[]{"Date Bill", "Account No", "Invoice No", "Name", "Address", "Meter No", "Previos Meter", "Current Meter", "Total Usage", "Tunggakan", "Current Charges", "Total CurrentCharge"};
+    String[] header = new String[]{"Date Bill", "Account No", "Invoice No", "Name", "Address", "Meter No", "Previos Meter", "Current Meter", "Total Usage", "Tunggakan", "Current Charges", "Total Current Charge"};
     JTable output;
     DefaultTableModel dtm;
     JScrollPane jsp;
@@ -127,13 +128,14 @@ public class Records extends JFrame implements ActionListener {
         output = new JTable();
 
         JTableHeader header = output.getTableHeader();
+        header.setFont(new Font("Dialog", Font.BOLD, 12));
         int headerHeight = 30;
         header.setPreferredSize(new Dimension(50, headerHeight));
         ((DefaultTableCellRenderer) output.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         output.setModel(dtm);
 
         for (int i = 0; i < 12; i++) {
-            output.getColumnModel().getColumn(i).setPreferredWidth(150);
+            output.getColumnModel().getColumn(i).setPreferredWidth(175);
         }
 
         output.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -167,19 +169,19 @@ public class Records extends JFrame implements ActionListener {
 
     public void insertionSort(ArrayList<Customer> customerList) {
 
-        for (int x = 1; x < customerList.size(); x++) {
+        for (int i = 1; i < customerList.size(); i++) {
 
-            Customer temp = customerList.get(x);
-            int y = x - 1;
+            Customer temp = customerList.get(i);
+            int j = i;
 
-            while (y >= 0 && customerList.get(y).getT2() > temp.getT2()) {
-
-                customerList.set(x, customerList.get(y));
-                customerList.set(y, temp);
-                y--;
+            while (j > 0 && customerList.get(j - 1).getT2() > temp.getT2()) {
+                customerList.set(j, customerList.get(j - 1));
+                j--;
             }
+            customerList.set(j, temp);
         }
     }
+
     public int binarySearch(Long aacNo, ArrayList<Customer> customerList){
 
         int i=0;
@@ -249,6 +251,7 @@ public class Records extends JFrame implements ActionListener {
             }
 
             else if(text1.getText().equals("")) {
+                ElectricityBillingSystem.customerList.sort(Comparator.comparing(Customer::getT4));
                 String t2 = text2.getText().toUpperCase();
                 int index2 = binarySearch2(t2, ElectricityBillingSystem.customerList);
                 if (index2 >= 0) {
@@ -270,6 +273,7 @@ public class Records extends JFrame implements ActionListener {
                 }
             }
             else{
+                insertionSort(ElectricityBillingSystem.customerList);
                 text1.setText(null);
                 text2.setText(null);
                 if (dtm.getRowCount() == 1) {

@@ -11,7 +11,7 @@ import java.awt.event.WindowEvent;
 
 public class EditData extends JFrame implements ActionListener {
 
-    JLabel label1, label2, label3, label4, label5, label6, label7, label8, label9, label10;
+    JLabel label1, label2, label3, label4, label5, label6, label7, label8, label9, label10, label11;
     JTextField text1, text2, text3, text4, text5, text6, text7, text8, text9;
     JButton button1, button2, button3;
     DefaultTableModel dtm;
@@ -50,23 +50,25 @@ public class EditData extends JFrame implements ActionListener {
         add(label10);
 
         label1 = new JLabel("Date Bill:");
-        label1.setFont(new Font("Dialog",Font.BOLD,12));
+        label1.setFont(new Font("Dialog", Font.BOLD, 12));
         label2 = new JLabel("Account No:");
-        label2.setFont(new Font("Dialog",Font.BOLD,12));
+        label2.setFont(new Font("Dialog", Font.BOLD, 12));
         label3 = new JLabel("Invoice No:");
-        label3.setFont(new Font("Dialog",Font.BOLD,12));
+        label3.setFont(new Font("Dialog", Font.BOLD, 12));
         label4 = new JLabel("Name:");
-        label4.setFont(new Font("Dialog",Font.BOLD,12));
+        label4.setFont(new Font("Dialog", Font.BOLD, 12));
         label5 = new JLabel("Address:");
-        label5.setFont(new Font("Dialog",Font.BOLD,12));
+        label5.setFont(new Font("Dialog", Font.BOLD, 12));
+        label11 = new JLabel("(Do not contain \",\")");
+        label11.setFont(new Font("Dialog", Font.BOLD, 12));
         label6 = new JLabel("Meter No:");
-        label6.setFont(new Font("Dialog",Font.BOLD,12));
+        label6.setFont(new Font("Dialog", Font.BOLD, 12));
         label7 = new JLabel("Previos Meter:");
-        label7.setFont(new Font("Dialog",Font.BOLD,12));
+        label7.setFont(new Font("Dialog", Font.BOLD, 12));
         label8 = new JLabel("Current Meter:");
-        label8.setFont(new Font("Dialog",Font.BOLD,12));
+        label8.setFont(new Font("Dialog", Font.BOLD, 12));
         label9 = new JLabel("Tunggakan:");
-        label9.setFont(new Font("Dialog",Font.BOLD,12));
+        label9.setFont(new Font("Dialog", Font.BOLD, 12));
 
         text1 = new JTextField(10);
         text2 = new JTextField(10);
@@ -103,20 +105,21 @@ public class EditData extends JFrame implements ActionListener {
         label3.setBounds(20, 85, 150, 50);
         label4.setBounds(20, 125, 150, 50);
         label5.setBounds(20, 165, 150, 50);
+        label11.setBounds(20, 180, 150, 50);
         label6.setBounds(370, 5, 150, 50);
         label7.setBounds(370, 45, 150, 50);
         label8.setBounds(370, 85, 150, 50);
         label9.setBounds(370, 125, 150, 50);
 
-        text1.setBounds(170, 20, 150, 25);
-        text2.setBounds(170, 60, 150, 25);
-        text3.setBounds(170, 100, 150, 25);
-        text4.setBounds(170, 140, 150, 25);
+        text1.setBounds(170, 20, 150, 30);
+        text2.setBounds(170, 60, 150, 30);
+        text3.setBounds(170, 100, 150, 30);
+        text4.setBounds(170, 140, 150, 30);
         text5.setBounds(170, 180, 150, 55);
-        text6.setBounds(520, 20, 150, 25);
-        text7.setBounds(520, 60, 150, 25);
-        text8.setBounds(520, 100, 150, 25);
-        text9.setBounds(520, 140, 150, 25);
+        text6.setBounds(520, 20, 150, 30);
+        text7.setBounds(520, 60, 150, 30);
+        text8.setBounds(520, 100, 150, 30);
+        text9.setBounds(520, 140, 150, 30);
 
         button = new JPanel();
         button.setBounds(20, 571, 700, 75);
@@ -133,6 +136,7 @@ public class EditData extends JFrame implements ActionListener {
         input.add(label3);
         input.add(label4);
         input.add(label5);
+        input.add(label11);
         input.add(label6);
         input.add(label7);
         input.add(label8);
@@ -164,7 +168,7 @@ public class EditData extends JFrame implements ActionListener {
     }
 
     public void table() {
-        String[] header = new String[]{"Penggunaan elektrik(kWj)", "Kadar tariff (RM)", "Unit penggunaan elektrik (kWj)"};
+        String[] header = new String[]{"Penggunaan elektrik (kWj)", "Kadar tariff (RM)", "Unit penggunaan elektrik (kWj)"};
         dtm = new DefaultTableModel(header, 0);
         dtm.addRow(new Object[]{"1-200", "0.218", "200"});
         dtm.addRow(new Object[]{"201-300", "0.334", "100"});
@@ -174,6 +178,7 @@ public class EditData extends JFrame implements ActionListener {
         table = new JTable();
 
         JTableHeader header1 = table.getTableHeader();
+        header1.setFont(new Font("Dialog", Font.BOLD, 12));
         int headerHeight = 30;
         header1.setPreferredSize(new Dimension(50, headerHeight));
 
@@ -225,6 +230,11 @@ public class EditData extends JFrame implements ActionListener {
                         double t9 = Double.parseDouble(text9.getText());
                         double cC = 0, tCC = 0;
                         int tU = 0;
+
+                        if (t5.contains(",")) {
+                            JOptionPane.showMessageDialog(this, "Do not contain\",\" for address", "Electricity Billing System", JOptionPane.WARNING_MESSAGE);
+                            return;
+                        }
 
                         if (text2.getText().length() == 6) {
                             if (t7 > 0) {

@@ -35,20 +35,19 @@ public class ElectricityBillingSystem {
         tU = c.getTotalUsage();
         cC = c.getCurrentCharge();
         tCC = c.getTotalcurrentCharge();
-        //   insertionSort(ElectricityBillingSystem.customerList);
         customerList.add(new Customer(t1, t2, t3, t4, t5, t6, t7, t8, tU, t9, cC, tCC));
-        data = "\nDate Bill: " + t1
-                + "\n" + "Account No:" + t2
-                + "\n" + "Invoice No:" + t3
-                + "\n" + "Name: " + t4
-                + "\n" + "Address:" + t5
-                + "\n" + "Meter No:" + t6
-                + "\n" + "Previous Meter:" + t7
-                + "\n" + "Current Meter:" + t8
-                + "\n" + "Total Usage:" + c.getTotalUsage()
-                + "\n" + "Tunggakan:" + String.format("%.2f", t9)
-                + "\n" + "Current Charge" + String.format("%.2f", cC)
-                + "\n" + "Total CurrentCharge : RM" + String.format("%.2f", tCC);
+        data = "\nDate Bill  : " + t1
+                + "\n" + "Account No  :" + t2
+                + "\n" + "Invoice No  :" + t3
+                + "\n" + "Name  : " + t4
+                + "\n" + "Address  :" + t5
+                + "\n" + "Meter No  :" + t6
+                + "\n" + "Previous Meter  :" + t7
+                + "\n" + "Current Meter  :" + t8
+                + "\n" + "Total Usage  :" + c.getTotalUsage()
+                + "\n" + "Tunggakan  :" + String.format("%.2f", t9)
+                + "\n" + "Current Charge  :" + String.format("%.2f", cC)
+                + "\n" + "Total CurrentCharge  : RM" + String.format("%.2f", tCC);
         return data;
     }
 

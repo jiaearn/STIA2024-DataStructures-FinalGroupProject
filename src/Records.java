@@ -16,7 +16,7 @@ public class Records extends JFrame implements ActionListener {
     static ArrayList<Customer> customerList = new ArrayList<>();
     static ArrayList<Customer> rowI = new ArrayList<>();
 
-    String[] header = new String[]{"Date Bill", "Account No", "Invoice No", "Name", "Address", "Meter No", "Previos Meter", "Current Meter", "Total Usage", "Tunggakan", "Current Charges", "Total Current Charge"};
+    String[] header = new String[]{"Date Bill", "Account No", "Invoice No", "Name", "Address", "Meter No", "Previos Meter", "Current Meter", "Total Usage", "Tunggakan", "Current Charges", "Total Current Charges"};
     JTable output;
     DefaultTableModel dtm;
     JScrollPane jsp;
